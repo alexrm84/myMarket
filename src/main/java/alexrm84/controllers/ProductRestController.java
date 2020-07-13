@@ -5,6 +5,7 @@ import alexrm84.errorHandlers.ProductException;
 import alexrm84.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,28 +27,36 @@ public class ProductRestController {
     }
 
     @GetMapping("/{id}")
-    public Product findOne(@PathVariable(name = "id") Long id){
-        return productService.findById(id).orElseThrow(()-> new ProductException("Product with id: " + id + " not found"));
+    public ResponseEntity<Product> findOne(@PathVariable(name = "id") Long id){
+        if (productService.findById(id) == null) {
+            throw new ProductException("Product with id: " + id + " not found");
+        }
+        return new ResponseEntity<>(productService.findById(id).get(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product product){
-        if (product.getId()!=null){
+    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+        if (product.getId() != null){
             throw new ProductException("Product must not contain id");
         }
-        return productService.save(product);
+        return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
 
     @PutMapping("")
-    public Product updateProduct(@RequestBody Product newProduct){
-        return productService.findById(newProduct.getId())
-                .map(product -> { return productService.save(newProduct);})
-                .orElseThrow(()-> new ProductException("Product with id: " + newProduct.getId() + " not found"));
+    public ResponseEntity<Product> updateProduct(@RequestBody Product newProduct){
+        if (productService.findById(newProduct.getId()) == null){
+            throw new ProductException("Product with id: " + newProduct.getId() + " not found");
+        }
+        return new ResponseEntity<>(productService.save(newProduct), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable(name = "id") Long id){
+    public ResponseEntity<?> deleteProduct(@PathVariable(name = "id") Long id){
+        if (productService.findById(id) == null) {
+            throw new ProductException("Product with id: " + id + " not found");
+        }
         productService.deleteById(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

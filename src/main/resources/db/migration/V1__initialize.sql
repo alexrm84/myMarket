@@ -107,7 +107,8 @@ CREATE  TABLE order_items (
 DROP TABLE IF EXISTS products_images;
 CREATE TABLE products_images (
     id bigserial PRIMARY KEY,
-    product_id bigint, path varchar(255),
+    product_id bigint,
+    path varchar(255),
     FOREIGN KEY (product_id) REFERENCES products(id));
 
 INSERT INTO products_images (product_id, path) VALUES
