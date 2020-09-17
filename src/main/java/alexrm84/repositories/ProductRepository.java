@@ -19,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     @Query(value = "Select min(p.cost) from products p", nativeQuery = true)
     Integer findMinCost();
+
+    List<Product> findAllByCategory_id(Long id);
 }

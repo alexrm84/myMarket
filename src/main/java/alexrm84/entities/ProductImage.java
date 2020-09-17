@@ -1,5 +1,6 @@
 package alexrm84.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Table(name = "products_images")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProductImage implements Serializable {
     private static final long serialVersionUID = -7838989013257763044L;
 
@@ -17,10 +19,6 @@ public class ProductImage implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     @Column(name = "path")
     private String path;

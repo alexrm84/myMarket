@@ -1,5 +1,6 @@
 package alexrm84.services;
 
+import alexrm84.DTOs.OrderDto;
 import alexrm84.entities.User;
 import alexrm84.utils.SystemUser;
 import com.google.gson.JsonObject;
@@ -15,4 +16,5 @@ public interface UserService extends UserDetailsService {
     User save(Map<String, String> params);
     User save(JsonObject jsonUserInfo) throws Exception;
     boolean isUserExist(String phone);
+    User save(OrderDto orderDto);
 }

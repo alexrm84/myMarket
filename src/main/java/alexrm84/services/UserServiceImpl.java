@@ -1,5 +1,6 @@
 package alexrm84.services;
 
+import alexrm84.DTOs.OrderDto;
 import alexrm84.configs.SecurityConfig;
 import alexrm84.entities.Role;
 import alexrm84.entities.User;
@@ -141,6 +142,20 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(password));
         }
         securityConfig.authSocials(jsonUserInfo.get("id").toString(), password);
+        return user;
+    }
+
+    @Override
+    @Transactional
+    public User save(OrderDto orderDto) {
+        User user = findByPhone(orderDto.getPhone());
+        if (user == null){
+            user = new  User();
+            user.setPhone(orderDto.getPhone());
+            user.setFirstName(orderDto.getFirstName());
+            user.setRoles(Arrays.asList(roleRepository.findOneByName("ROLE_CUSTOMER")));
+            return userRepository.save(user);
+        }
         return user;
     }
 

@@ -1,5 +1,6 @@
 package alexrm84.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "order_items")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 5278951391888291133L;
 
