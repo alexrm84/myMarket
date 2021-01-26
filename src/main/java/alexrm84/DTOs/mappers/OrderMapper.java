@@ -6,10 +6,12 @@ import alexrm84.services.UserService;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Component
 public class OrderMapper {
     private ModelMapper mapper;
     private UserService userService;

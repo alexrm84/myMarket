@@ -6,9 +6,11 @@ import alexrm84.services.ProductService;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+@Component
 public class CategoryMapper {
     private ModelMapper mapper;
     private ProductService productService;

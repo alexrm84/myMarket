@@ -54,6 +54,7 @@ public class AppConfig implements WebMvcConfigurer {
         return new RestTemplate();
     }
 
+    @Bean
     public ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration()

@@ -58,6 +58,7 @@ public class AuthController {
         if (userService.isUserExist(phone)) {
             return new ResponseEntity<>("User already exists", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(userService.save(authUserDto), HttpStatus.OK);
+//        userService.save(authUserDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

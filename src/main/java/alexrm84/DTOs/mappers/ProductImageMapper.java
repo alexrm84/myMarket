@@ -4,9 +4,11 @@ import alexrm84.DTOs.ProductImageDto;
 import alexrm84.entities.ProductImage;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+@Component
 public class ProductImageMapper {
     private ModelMapper mapper;
 
